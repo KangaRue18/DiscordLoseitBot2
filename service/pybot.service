@@ -1,0 +1,20 @@
+[Unit]
+Description=PyBot
+Wants = network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/Documents/Bot
+ExecStart=python3 -u /home/pi/Documents/Bot/DiscordLoseItBot.py
+StandardOutput=file:/home/pi/Documents/Bot/BotTrial.log
+Restart=always
+Environment=USER=pi HOME=/home/pi
+
+
+[Install]
+WantedBy=multi-user.target
+
+
