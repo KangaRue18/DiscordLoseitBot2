@@ -53,6 +53,7 @@ async def on_message(message):
             msg = "Please ensure that you have filled out the pinned google form(use !pin to learn how to see pinned messages) and friended stubbytuna at http://www.fitbit.com/user/752XDX"
             await message.channel.send(msg)
     await bot.process_commands(message)
+
 @bot.command()
 async def ping(ctx):
     '''
@@ -70,6 +71,7 @@ async def links(ctx):
     '''
     msg= "https://www.reddit.com/r/LoseItChallenges/"
     await ctx.channel.send(msg)
+
 @bot.command()
 async def pin(ctx):
     '''
@@ -78,6 +80,7 @@ async def pin(ctx):
     msg= "On mobile, look for the three dots on the upper right corner to access menu, click on pinned messages.\nOn desktop, click the pin icon in the same line as channel name and description."
 
     await ctx.channel.send(msg)
+
 @bot.command()
 async def description(ctx):
     '''
@@ -85,6 +88,7 @@ async def description(ctx):
     '''
     msg= "On mobile, look on upper right corner to press the person icon(between search and three dots) to see the description above the member list.\nOn desktop, it should appear in the same line as channel name."
     await ctx.channel.send(msg)
+
 @bot.command()
 async def deadline(ctx):
     '''
@@ -93,7 +97,6 @@ async def deadline(ctx):
     msg = "The deadline to log weight and activity is Friday 8am EST."
     await ctx.channel.send(msg)
 
-
 @bot.command(hidden=True)
 async def goodbenny(ctx):
     '''
@@ -101,7 +104,6 @@ async def goodbenny(ctx):
     '''
     msg = "Thank you! :heart: Glad I can help!"
     await ctx.channel.send(msg)
-
 
 @bot.command()
 async def timeleft(ctx):
@@ -144,7 +146,7 @@ async def botoverlord(ctx):
     '''
     Owner info
     '''
-    msg = "My bot overload and owner is RUEpernova or RUDEpernova depending on the mood. Feel free to message her with questions and suggestions."
+    msg = "My bot overload and owner is Rue the day or Rue depending on the mood. Feel free to message her with questions and suggestions."
     await ctx.channel.send(msg)
 
 @bot.command()
@@ -155,6 +157,7 @@ async def Benny(ctx):
     msg = "Hello {0.author.mention}".format(ctx)
     await ctx.channel.send(msg)
 
+##############################CONVERTERS##################################
 @bot.command(pass_context = True)
 async def ctof(ctx,c_str):
     '''
@@ -238,6 +241,35 @@ async def fttometers(ctx,feet_str,inches_str):
     message = str(feet)+ " feet and "+ str(inches)+ " inches is "+str(rounded_meters)+" meters."
     await ctx.channel.send(message)
 
+@bot.command(pass_context = True)
+async def milestokm(ctx,miles_value):
+    '''
+    Converts meters to km. ex "!milestokm 3.5". Enter !meterstoft miles_value. Do not enter units.
+    '''
+    try:
+        miles = float(miles_value)
+    except:
+        return
+    kmeter=  miles * 1.60934
+    rounded_kmeters = int(kmeter*100)/100
+    message = str(miles)+ " miles is "+str(rounded_kmeters)+"  km."
+    await ctx.channel.send(message)
+
+@bot.command(pass_context = True)
+async def kmtomiles(ctx,km_value):
+    '''
+    Converts km to meters. ex "!kmtomiles 3.5". Enter !kmtomiles kilometer_value. Do not enter units.
+    '''
+    try:
+        km = float(km_value)
+    except:
+        return
+    miles=  km / 1.60934
+    rounded_miles = int(miles*100)/100
+    message = str(km)+ " km is "+str(rounded_miles)+"  miles."
+    await ctx.channel.send(message)
+
+################          FUN             #######################
 @bot.command(hidden=True)
 async def hype(ctx):
     '''
@@ -281,8 +313,6 @@ async def bitemythumb(ctx):
              nounList[random.randint(0, len(nounList) - 1)] +"!"
     await ctx.channel.send(insult)
 
-
-
 ####################----------GIFS-----------########################
 async def chanceOfRickRoll(channelName,authorID=0,percent=3):
     if authorID == 327469084021096457:
@@ -296,6 +326,8 @@ async def sendRickRoll(ctx):
     msg = "https://gph.is/1KeL5u6"
     await ctx.channel.send(msg)
 
+
+
 @bot.command(hidden=True)
 async def rainbows(ctx):
     '''
@@ -306,6 +338,7 @@ async def rainbows(ctx):
         return
     msg = "https://tenor.com/view/rainbow-gif-8764636 "
     await ctx.channel.send(msg)
+
 @bot.command(hidden=True)
 async def rooting(ctx):
     '''
@@ -362,7 +395,6 @@ async def welcometotheclub(ctx):
     msg = "https://media.tenor.com/images/1c43814df5a461b7dbaf95682992e25d/tenor.gif"
     await ctx.channel.send(msg)
 
-
 @bot.command(hidden=True)
 async def rueswelcome(ctx):
     '''
@@ -374,12 +406,6 @@ async def rueswelcome(ctx):
     msg = "https://media.tenor.com/images/78edbb1f8c34b17b20e9e0987914001e/tenor.gif"
     await ctx.channel.send(msg)
 
-#@bot.command(hidden=True)
-#async def stabbystab(ctx):
-#    '''
-#    BEST GIF EVER
-#    '''
-#    await ctx.message.channel.send('', file=discord.File('stabbystab.gif', 'stabbystab.gif'))
 @bot.command(hidden=True)
 async def stabbystab(ctx):
     '''
@@ -421,7 +447,6 @@ async def rickroll(ctx):
     '''
     msg = "https://gph.is/1KeL5u6"
     await ctx.channel.send(msg)
-
 
 @bot.command(hidden=True)
 async def hydration(ctx):
@@ -473,35 +498,6 @@ async def wuffles(ctx, loss):
     message = 'You have to hold '+ str(petloss) +" "+ petname+ "'s to weigh the same now. Enjoy the cuddles and keep rocking it!"
     await ctx.channel.send(message)
     await ctx.channel.send(petpiclink)
-
-@bot.command(pass_context=True)
-async def Laika(ctx, loss):
-    '''
-    Laika is the first dog in space!
-    '''
-    petname = 'Laika'
-    petweight = 11
-    petpiclink = 'https://imgur.com/vB0hPDW'
-    loss = int(loss)
-    petloss = int(loss / petweight * 100) / 100
-    message = 'You have to hold '+ str(petloss) +" "+ petname+ "'s to weigh the same now. Enjoy the cuddles and keep rocking it!"
-    await ctx.channel.send(message)
-    await ctx.channel.send(petpiclink)
-
-@bot.command(pass_context=True)
-async def logan(ctx, loss):
-    '''
-    How many logans(jenrazzle's puppy) have you lost?
-    '''
-    petname = 'Logan'
-    petweight = 35
-    petpiclink = 'https://imgur.com/cQxPKpK'
-    loss = int(loss)
-    petloss = int(loss / petweight * 100) / 100
-    message = 'You have to hold '+ str(petloss) +" "+ petname+ "'s to weigh the same now.Enjoy the cuddles and keep rocking it!"
-    await ctx.channel.send(message)
-    await ctx.channel.send(petpiclink)
-
 
 @bot.command(pass_context=True)
 async def daisy(ctx, loss):
