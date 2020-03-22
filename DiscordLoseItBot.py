@@ -22,7 +22,7 @@ async def on_ready():
         
 @bot.event
 async def on_message(message):
-    print("The message's content was", message.content)
+    print("The message's content was", message.content," by ",message.author.name, " in ", message.channel.name)
     if (message.author.bot):
         print("ITS A BOTTTTTTTTTT")
         return
@@ -32,16 +32,6 @@ async def on_message(message):
     #if "Team Io" in message.guild.name and message.content.startswith("!"):
     #    await message.channel.send("Neil take a nap. Neil will be back. Ping RUdEpernova for help.")
     #   return
-    if message.author.name == "ThatCanadianGuy88" and message.channel.name == 'meow-t-of-this-world':
-        await message.add_reaction("🤴🏻")
-        await message.add_reaction("❤")
-        await message.add_reaction("🐱")
-    if "weigh in" in message.content.lower() or  "weighin" in message.content.lower() :
-        msg = "Remember: NO POOPING or you must fear the wrath of stubbytuna"
-        await message.channel.send(msg)
-        await  message.add_reaction("🚫")
-        await  message.add_reaction("💩")
-    #print(type(message.channel))
     if "halo top" in message.content.lower() and "love" in message.content.lower():
         msg = "omg I love halo top."
         await message.channel.send(msg)
@@ -52,6 +42,16 @@ async def on_message(message):
                 "no invite" in message.content.lower():
             msg = "Please ensure that you have filled out the pinned google form(use !pin to learn how to see pinned messages) and friended stubbytuna at http://www.fitbit.com/user/752XDX"
             await message.channel.send(msg)
+
+    channelId =  "688285329316511754" #message.guild.channels.find("name", 'covid-19-team-isolation-☢')
+    #channel = message.guild.channels.find("name", 'covid-19-team-isolation-☢')
+    if message.channel.name != 'covid-19-team-isolation-☢' and "Sherlock" in message.guild.name:
+        if "coronavirus" in message.content.lower() or \
+                "covid" in message.content.lower() or \
+                "pandemic" in message.content.lower() or \
+                "quarantine" in message.content.lower():
+                msg = "<@" + str(message.author.id) + "> STOP IT. GO TO <#" + channelId + ">"
+                await message.channel.send(msg)
     await bot.process_commands(message)
 
 @bot.command()
@@ -63,7 +63,11 @@ async def ping(ctx):
     latency = bot.latency  # Included in the Discord.py library
     # Send it to the user
     await ctx.channel.send(latency)
-
+@bot.command()
+async def map(ctx):
+    '''Map details'''
+    msg= "Link to map: https://drive.google.com/open?id=17qrKns48BIIKIda5xkyQ81d-hmUMxd24&usp=sharing\n\nHow to pin here: https://cdn.discordapp.com/attachments/662601522852659200/666470459201683466/unknown.png"
+    await ctx.channel.send(msg)
 @bot.command()
 async def links(ctx):
     '''
@@ -575,16 +579,16 @@ async def timeline(ctx):
     '''
     Shows a timeline for the challenge
     '''
-    msg = '''September 27th - Signups open\n
-October 4th - Week 0, Establish challenge goals, signups open through end of week\n
-October 11th - Week 1, Head to Head battles begin, Signups are closed\n
-October 18th - Week 2\n
-October 25th - Week 3\n
-November 1st- Week 4\n
-November 8th - Week 5\n
-November 15th - Week 6\n
-November 22nd - Week 7, Last Head to Head Battle\n
-November 29th - Results and next challenge announcement'''
+    msg = '''January 3rd - Signups open.\n
+January 10th - Week 0, Establish challenge goals, signups open through end of week.\n
+January 17th - Week 1, Head to Head battles begin, Signups are closed.\n
+January 24th - Week 2.\n
+January 31st - Week 3.\n
+February 7th - Week 4.\n
+February 14th - Week 5.\n
+February 21st - Week 6.\n
+February 28th - Week 7, Last Head to Head Battle.\n
+March 6th - Results and next challenge announcement'''
     await ctx.channel.send(msg)
 
 @bot.command()
@@ -595,12 +599,21 @@ async def iofacts(ctx):
     factList = ["Jupiter-bae: Io is the innermost of the four Galilean moons of the planet Jupiter.",
                "BOOM. Io is the most volcanically active world in the solar system. Io even has lakes of molten silicate lava on its surface.",
                 "Io is slightly larger than earth's moon. #weirdflexbutokay",
-               "Get my good side: Over 1.8 Earth days, Io rotates once on its axis and completes one orbit of Jupiter, causing the same side of Io to always face Jupiter.",
+               "Get my good side: Over 1.8 Earth days, Io rotates once on its axis and cobmpletes one orbit of Jupiter, causing the same side of Io to always face Jupiter.",
                "Io’s very thin atmosphere is primarily sulfur dioxide, an important compound used in winemaking since Roman times. ",
                "Io’s volcanoes are at times so powerful that they are seen with large telescopes on Earth. :eyes:",
                "Io is the best team within the loseit challenge. Yes, this is a fact.",
-               "My Bot Lord hasn't had time to update to Halloween facts. Sincerest Apologies for the lack of effot from her. I deal with this everyday. Save me plz."]
+               "My Bot Lord hasn't had time to update to Halloween facts. Sincerest Apologies for the lack of effot from her. I deal with this everyday. Save me plz.",
+            "YES. YOU SEE RIGHT. WE ARE INFACT LIKE 3 CHALLENGES BEHIND. SHE IS SOOOO LAZY."]
     await  ctx.channel.send("\n".join(factList))
+
+@bot.command(hidden=True)
+async def morning(ctx):
+    '''
+    morning quote by scary space poet
+    '''
+    msg= "https://imgur.com/C8veXtp"
+    await ctx.channel.send(msg)
 
 numTried = 0
 while numTried<10:
