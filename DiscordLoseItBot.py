@@ -1,9 +1,9 @@
 import discord
-import random
-import asyncio
-import aiohttp
-import json
-from discord import Game
+# import random
+# import asyncio
+# import aiohttp
+# import json
+# from discord import Game
 from discord.ext import commands
 import time
 import datetime
@@ -43,14 +43,14 @@ async def on_message(message):
             msg = "Please ensure that you have filled out the pinned google form(use !pin to learn how to see pinned messages) and friended stubbytuna at http://www.fitbit.com/user/752XDX"
             await message.channel.send(msg)
 
-    channelId =  "688285329316511754" #message.guild.channels.find("name", 'covid-19-team-isolation-☢')
+    channelId =  "695306118506872862" #message.guild.channels.find("name", 'covid-19-team-isolation-☢')
     #channel = message.guild.channels.find("name", 'covid-19-team-isolation-☢')
     if message.channel.name != 'covid-19-team-isolation-☢' and "Sherlock" in message.guild.name:
         if "coronavirus" in message.content.lower() or \
                 "covid" in message.content.lower() or \
                 "pandemic" in message.content.lower() or \
                 "quarantine" in message.content.lower():
-                msg = "<@" + str(message.author.id) + "> STOP IT. GO TO <#" + channelId + ">"
+                msg = "<@" + str(message.author.id) + "> All COVID talk must be confined to the channel <#" + channelId + ">"
                 await message.channel.send(msg)
     await bot.process_commands(message)
 
